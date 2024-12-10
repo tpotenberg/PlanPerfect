@@ -1,35 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:padding="16dp">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:fitsSystemWindows="true"
-    >
+    <!-- App Logo -->
+    <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/app_logo"
+            android:contentDescription="@string/app_logo_description"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_main"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+    <!-- App Title -->
+    <TextView
+            android:id="@+id/appTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="@dimen/fab_margin"
+            android:text="PlanPerfect"
+            android:textSize="28sp"
+            android:textStyle="bold"
             android:layout_marginBottom="16dp"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
+            app:layout_constraintTop_toBottomOf="@id/appLogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- Welcome Message -->
+    <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome! Choose an option below to get started."
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/appTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Button: Track Daily Tasks -->
+    <Button
+            android:id="@+id/btnTasks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Track Daily Tasks"
+            app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <!-- Button: View Calendar -->
+    <Button
+            android:id="@+id/btnCalendar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="View Calendar"
+            app:layout_constraintTop_toBottomOf="@id/btnTasks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <!-- Button: Manage Goals -->
+    <Button
+            android:id="@+id/btnGoals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Manage Goals"
+            app:layout_constraintTop_toBottomOf="@id/btnCalendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <!-- Daily Progress Bar -->
+    <ProgressBar
+            android:id="@+id/dailyProgress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:progress="40"
+            android:max="100"
+            app:layout_constraintTop_toBottomOf="@id/btnGoals"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

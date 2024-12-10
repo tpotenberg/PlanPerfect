@@ -1,6 +1,12 @@
 <resources>
+    <string name="app_logo_description">PlanPerfect logo</string>
     <string name="app_name">PlanPerfect</string>
     <string name="action_settings">Settings</string>
+    <string name="welcome_message">Welcome! Choose an option below to get started.</string>
+    <string name="track_daily_tasks">Track Daily Tasks</string>
+    <string name="view_calendar">View Calendar</string>
+    <string name="manage_goals">Manage Goals</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
