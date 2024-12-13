@@ -50,6 +50,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     implementation("com.google.firebase:firebase-analytics:22.1.2")
     implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation("com.firebase:firebase-ui-auth:6.2.0")
 
 
 }
