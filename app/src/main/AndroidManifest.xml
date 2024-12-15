@@ -12,8 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.PlanPerfect"
             tools:targetApi="31">
+
         <activity
-                android:name=".MainActivity"
+                android:name=".SplashActivity"
                 android:exported="true"
                 android:theme="@style/Theme.PlanPerfect">
             <intent-filter>
@@ -22,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".MainActivity"
+                android:exported="false"/>
+
     </application>
 
 </manifest>
