@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="midnight">#02023B</color>
+    <color name="sky">#83DBF5</color>
+    <color name="jade">#5CED9E</color>
+    <color name="mango">#F4A80A</color>
 </resources>
