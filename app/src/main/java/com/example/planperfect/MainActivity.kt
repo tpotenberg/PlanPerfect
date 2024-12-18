@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : ComponentActivity() {
@@ -59,6 +60,11 @@ fun AppNavigation() {
         }
         composable(AppScreen.Settings.route) {
             SettingScreen(navController)
+        }
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            navController.navigate(AppScreen.Settings.route)
         }
     }
 }

@@ -1,6 +1,14 @@
 package com.example.planperfect
 
+import android.app.Instrumentation
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,26 +29,45 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 @Composable
 fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var emailError = remember { mutableStateOf(false) }
-    var passwordError = remember { mutableStateOf(false) }
-
+    val emailError = remember { mutableStateOf(false) }
+    val passwordError = remember { mutableStateOf(false) }
+    val launcher = rememberFirebaseAuthLauncher(
+        onAuthComplete = { result ->
+            Log.d("SignInSuccess", "signInWithGoogle:success")
+            navController.navigate(AppScreen.Settings.route)
+        },
+        onAuthError = { error ->
+            Log.w("SignInFail", "signInWithGoogle:failure$error")
+        }
+    )
+    val context = LocalContext.current
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,7 +75,7 @@ fun LoginScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize().padding(16.dp)
     ) {
         Text(
-            text = "PlanPerfect",
+            text = "Mastering Firebase",
             fontSize = 24.sp,
             color = Color.Black
         )
@@ -127,7 +154,7 @@ fun LoginScreen(navController: NavController) {
         Text("or")
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { /* TODO: Handle Google sign in */ },
+            onClick = { performGoogleAuthentication(launcher, context) },
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -163,6 +190,38 @@ private fun performLogin(
                     Log.w("SignInFail", "signInWithEmail:failure", task.exception)
                 }
             }
+    }
+}
+
+private fun performGoogleAuthentication(launcher: ManagedActivityResultLauncher<Intent, ActivityResult>, context: Context) {
+    val token = "314960024202-bpv1d3uuvicphnhs91lsulipedug12rc.apps.googleusercontent.com"
+    val gso =
+        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(token)
+            .requestEmail()
+            .build()
+    val googleSignInClient = GoogleSignIn.getClient(context, gso)
+    launcher.launch(googleSignInClient.signInIntent)
+}
+
+@Composable
+private fun rememberFirebaseAuthLauncher(
+    onAuthComplete: (AuthResult) -> Unit,
+    onAuthError: (ApiException) -> Unit
+): ManagedActivityResultLauncher<Intent, ActivityResult> {
+    val scope = rememberCoroutineScope()
+    return rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)!!
+            val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
+            scope.launch {
+                val authResult = Firebase.auth.signInWithCredential(credential).await()
+                onAuthComplete(authResult)
+            }
+        } catch (e: ApiException) {
+            onAuthError(e)
+        }
     }
 }
 

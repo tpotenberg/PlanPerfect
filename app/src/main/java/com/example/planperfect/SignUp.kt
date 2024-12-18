@@ -1,5 +1,6 @@
 package com.example.planperfect
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.runtime.MutableState
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -178,7 +180,19 @@ private fun performSignUp(
 
     if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
         // Perform sign-up action
-        navController.navigate(AppScreen.Settings.route)
+        val auth = Firebase.auth
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("SignUpSuccess", "signUpWithEmail:success")
+                    navController.navigate(AppScreen.Settings.route)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("SignUpFail", "signUpWithEmail:failure", task.exception)
+                }
+            }
+
     }
 }
 
