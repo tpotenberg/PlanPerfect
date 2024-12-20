@@ -11,10 +11,14 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:headerColor="@color/jade"
+            app:headerLabelColor="@color/midnight"
+            app:abbreviationsBarColor="@color/sky"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:todayLabelColor="@color/mango"/>
+            app:todayLabelColor="@color/mango"
+
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

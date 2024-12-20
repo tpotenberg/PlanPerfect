@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
         val calendars: ArrayList<CalendarDay> = ArrayList()
         val calendar = Calendar.getInstance()
 
-        calendar.set(2024, Calendar.DECEMBER, 17)
+        calendar.set(2024, Calendar.DECEMBER, 25)
         val calendarDay = CalendarDay(calendar)
-        calendarDay.imageResource = R.drawable.check
+        calendarDay.imageResource = R.drawable.candycane
         calendars.add(calendarDay)
-        events["12-17-2024"] = "Busy"
+        events["12-25-2024"] = "Christmas Day"
 
         calendarView.setCalendarDays(calendars)
 
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
 
         calendarView.setOnPreviousPageChangeListener(object : OnCalendarPageChangeListener {
             override fun onChange() {
