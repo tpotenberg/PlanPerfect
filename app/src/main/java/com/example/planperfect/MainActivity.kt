@@ -24,16 +24,24 @@ class MainActivity : AppCompatActivity() {
 
         calendarView = findViewById(R.id.calendar)
 
-        val calendars: ArrayList<CalendarDay> = ArrayList()
-        val calendar = Calendar.getInstance()
+        val calendarDays: MutableList<CalendarDay> = ArrayList()
 
+        var calendar = Calendar.getInstance()
         calendar.set(2024, Calendar.DECEMBER, 25)
-        val calendarDay = CalendarDay(calendar)
+        var calendarDay = CalendarDay(calendar)
         calendarDay.imageResource = R.drawable.candycane
-        calendars.add(calendarDay)
-        events["12-25-2024"] = "Christmas Day"
+        calendarDays.add(calendarDay)
+        events["25-12-2024"] = "Christmas Day"
 
-        calendarView.setCalendarDays(calendars)
+        calendar = Calendar.getInstance()
+        calendar.set(2024, Calendar.DECEMBER, 31)
+        calendarDay = CalendarDay(calendar)
+        calendarDay.imageResource = R.drawable.glass_flute
+        calendarDays.add(calendarDay)
+        events["31-12-2024"] = "New Year's Eve"
+
+
+        calendarView.setCalendarDays(calendarDays)
 
         calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
             override fun onClick(calendarDay: CalendarDay) {
