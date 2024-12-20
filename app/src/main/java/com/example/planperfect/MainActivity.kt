@@ -1,20 +1,20 @@
 package com.example.planperfect
 
 import android.os.Bundle
-import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.applandeo.materialcalendarview.CalendarView
-import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
-import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener
-import com.applandeo.materialcalendarview.CalendarDay
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import android.view.Menu
+import android.view.MenuItem
 import com.example.planperfect.databinding.ActivityMainBinding
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var calendarView: CalendarView
-    private var events: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,47 +22,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        calendarView = findViewById(R.id.calendar)
+        setSupportActionBar(binding.toolbar)
 
-        val calendarDays: MutableList<CalendarDay> = ArrayList()
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        var calendar = Calendar.getInstance()
-        calendar.set(2024, Calendar.DECEMBER, 25)
-        var calendarDay = CalendarDay(calendar)
-        calendarDay.imageResource = R.drawable.candycane
-        calendarDays.add(calendarDay)
-        events["25-12-2024"] = "Christmas Day"
+        binding.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .setAnchorView(R.id.fab).show()
+        }
+    }
 
-        calendar = Calendar.getInstance()
-        calendar.set(2024, Calendar.DECEMBER, 31)
-        calendarDay = CalendarDay(calendar)
-        calendarDay.imageResource = R.drawable.glass_flute
-        calendarDays.add(calendarDay)
-        events["31-12-2024"] = "New Year's Eve"
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
-        calendarView.setCalendarDays(calendarDays)
-
-        calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
-            override fun onClick(calendarDay: CalendarDay) {
-                val day = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.DAY_OF_MONTH))
-                val month = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.MONTH) + 1) // Months are 0-indexed
-                val year = calendarDay.calendar.get(Calendar.YEAR)
-                if (events.containsKey("$day-$month-$year")) {
-                    Toast.makeText(baseContext, events["$day-$month-$year"], Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(baseContext, "Not busy", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
-
-        calendarView.setOnPreviousPageChangeListener(object : OnCalendarPageChangeListener {
-            override fun onChange() {
-                val month = String.format(Locale.getDefault(), "%02d", calendarView.currentPageDate.get(Calendar.MONTH) + 1) // Months are 0-indexed
-                val year = calendarView.currentPageDate.get(Calendar.YEAR)
-                Toast.makeText(baseContext, "$month-$year", Toast.LENGTH_SHORT).show()
-            }
-        })
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration)
+                || super.onSupportNavigateUp()
     }
 }
