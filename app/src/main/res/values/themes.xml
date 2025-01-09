@@ -5,5 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="CustomDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerMode">spinner</item> <!-- Use 'calendar' or 'spinner' mode -->
+        <item name="android:background">@color/midnight</item>
+        <item name="android:textColorPrimary">@color/jade</item>
+        <item name="android:textColorSecondary">@color/mango</item>
+    </style>
+
     <style name="Theme.PlanPerfect" parent="Base.Theme.PlanPerfect"/>
 </resources>
