@@ -75,15 +75,15 @@ fun LoginScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize().padding(16.dp)
     ) {
         Text(
-            text = "Mastering Firebase",
+            text = "PlanPerfect",
             fontSize = 24.sp,
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(16.dp))
         // Replace with the actual image resource
         Image(
-            painter = painterResource(id = R.drawable.firebase),
-            contentDescription = "Firebase Logo"
+            painter = painterResource(id = R.drawable.planperfect_logo),
+            contentDescription = "PlanPerfect Logo"
         )
         Spacer(modifier = Modifier.height(24.dp))
         OutlinedTextField(

@@ -78,7 +78,7 @@ fun SettingScreen(navController: NavController) {
                 title = { Text("Setting") }
             )
         }
-    ) {it: PaddingValues ->
+    ) { //PaddingValues ->
         Box(modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)

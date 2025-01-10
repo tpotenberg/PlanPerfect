@@ -79,8 +79,8 @@ fun SignUpScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Image(
-                painter = painterResource(id = R.drawable.firebase),
-                contentDescription = "Firebase Logo"
+                painter = painterResource(id = R.drawable.planperfect_logo),
+                contentDescription = "PlanPerfect Logo"
             )
             Spacer(modifier = Modifier.height(24.dp))
             OutlinedTextField(
