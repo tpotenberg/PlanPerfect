@@ -6,10 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:background="@drawable/x2"> <!-- Set background here -->
+        android:background="@drawable/x2"
+        tools:context=".MainActivity">
 
     <!-- Profile Section -->
-
     <TextView
             android:id="@+id/profileName"
             android:layout_width="wrap_content"
@@ -17,11 +17,11 @@
             android:text="John Doe"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteY="25dp" tools:layout_editor_absoluteX="90dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
 
-    <!-- Calendar Box in Top-Right Corner -->
-
-    <!-- App Title -->
     <TextView
             android:id="@+id/profileSubtitle"
             android:layout_width="wrap_content"
@@ -30,7 +30,11 @@
             android:textSize="14sp"
             android:textColor="#808080"
             app:layout_constraintTop_toBottomOf="@id/profileName"
-            tools:layout_editor_absoluteX="86dp" android:layout_marginTop="12dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- App Title -->
     <TextView
             android:id="@+id/appTitle"
             android:layout_width="wrap_content"
@@ -38,9 +42,10 @@
             android:text="PlanPerfect"
             android:textSize="30sp"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profileSubtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:layout_editor_absoluteY="118dp"/>
+            android:layout_marginTop="16dp" />
 
     <!-- Date and Time -->
     <TextView
@@ -74,10 +79,10 @@
             android:text="“The secret of getting ahead is getting started.”"
             android:textSize="14sp"
             android:textStyle="italic"
-            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
 
     <!-- Task List Section -->
     <TextView
@@ -87,20 +92,20 @@
             android:text="Your Tasks"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/motivationalQuote"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/taskRecyclerView"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:background="#F0F0F0"
+            android:padding="8dp"
             app:layout_constraintTop_toBottomOf="@id/taskListLabel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp"
-            android:background="#F0F0F0"
-            android:padding="8dp" />
+            android:layout_marginTop="8dp" />
 
     <!-- Quick Add Task Button -->
     <Button
@@ -108,10 +113,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quick Add Task"
-            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/taskRecyclerView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
 
     <!-- Today's Progress Section -->
     <TextView
@@ -142,17 +147,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@id/dailyProgress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp">
 
         <Button
                 android:id="@+id/btnSettings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Settings"/>
+                android:text="Settings" />
+
         <Button
                 android:id="@+id/btnHelp"
                 android:layout_width="0dp"
@@ -167,21 +173,44 @@
                 android:layout_weight="1"
                 android:text="About" />
     </LinearLayout>
+
+    <!-- ImageViews -->
     <ImageView
+            android:id="@+id/imageView"
             android:layout_width="41dp"
-            android:layout_height="32dp" app:srcCompat="@drawable/icons8_calendar_50"
-            android:id="@+id/imageView" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="339dp"/>
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/icons8_calendar_50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
     <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="39dp"
-            android:layout_height="35dp" app:srcCompat="@drawable/icons8_plus_60" android:id="@+id/imageView4"
-            tools:layout_editor_absoluteY="261dp" tools:layout_editor_absoluteX="341dp"/>
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/icons8_plus_60"
+            app:layout_constraintTop_toBottomOf="@id/taskRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="8dp"/>
     <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="35dp"
-            android:layout_height="33dp" app:srcCompat="@drawable/icons8_favorites_50"
-            android:id="@+id/imageView6" tools:layout_editor_absoluteY="-1dp" tools:layout_editor_absoluteX="293dp"/>
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/icons8_favorites_50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageView"
+            android:layout_marginEnd="8dp" />
+
     <ImageView
+            android:id="@+id/imageView9"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/icons8_user_64" android:id="@+id/imageView9"
-            tools:layout_editor_absoluteY="13dp" tools:layout_editor_absoluteX="16dp"/>
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icons8_user_64"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
