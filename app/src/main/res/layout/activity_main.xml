@@ -14,7 +14,7 @@
             android:id="@+id/profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="John Doe"
+            android:text="@string/john_doe"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
             android:id="@+id/profileSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome back!"
+            android:text="@string/welcome_back"
             android:textSize="14sp"
             android:textColor="#808080"
             app:layout_constraintTop_toBottomOf="@id/profileName"
@@ -39,7 +39,7 @@
             android:id="@+id/appTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PlanPerfect"
+            android:text="@string/plan_perfect"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/profileSubtitle"
@@ -52,7 +52,7 @@
             android:id="@+id/dateTimeDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wednesday, December 12, 2024 11:15 AM"
+            android:text="@string/date_time_example"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/appTitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
             android:id="@+id/welcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome! Choose an option below to get started."
+            android:text="@string/choose_option"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/dateTimeDisplay"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
             android:id="@+id/motivationalQuote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="“The secret of getting ahead is getting started.”"
+            android:text="@string/secret_quote"
             android:textSize="14sp"
             android:textStyle="italic"
             app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
@@ -89,7 +89,7 @@
             android:id="@+id/taskListLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Tasks"
+            android:text="@string/your_tasks"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/motivationalQuote"
@@ -112,7 +112,7 @@
             android:id="@+id/btnQuickAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quick Add Task"
+            android:text="@string/quick_add_task"
             app:layout_constraintTop_toBottomOf="@id/taskRecyclerView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +123,7 @@
             android:id="@+id/progressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today's Progress"
+            android:text="@string/today_progress"
             app:layout_constraintTop_toBottomOf="@id/btnQuickAddTask"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -157,21 +157,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Settings" />
+                android:text="@string/settings" />
 
         <Button
                 android:id="@+id/btnHelp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Help" />
+                android:text="@string/help" />
 
         <Button
                 android:id="@+id/btnAbout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="About" />
+                android:text="@string/about" />
     </LinearLayout>
 
     <!-- ImageViews -->
