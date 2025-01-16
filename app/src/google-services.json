@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86407937618",
+    "project_id": "planperfect-99670",
+    "storage_bucket": "planperfect-99670.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86407937618:android:770f4778cd1480d000298b",
+        "android_client_info": {
+          "package_name": "com.example.planperfect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ7pA6PthYJDdwRjnxJ8Be8nfrzfsEgwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
