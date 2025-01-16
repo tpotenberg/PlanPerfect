@@ -41,19 +41,15 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PlanPerfect"
-            android:textColor="@color/text_color"
-            android:textStyle="italic"
-            android:gravity="center_horizontal"
-            android:fontFamily="@font/inter_extra_bold"
-            android:textSize="60sp"
+    <ImageView
+            android:id="@+id/planperfect_logo"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_marginStart="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/planperfect_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="260dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
