@@ -1,13 +1,126 @@
 package com.example.planperfect
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
 import android.os.Bundle
-
+import android.view.LayoutInflater
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.applandeo.materialcalendarview.CalendarDay
+import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
+import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener
+import com.example.planperfect.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var calendarView: CalendarView
+    private var events: MutableMap<String, String> = mutableMapOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        calendarView = findViewById(R.id.calendar)
+        val scheduleTaskButton: Button = findViewById(R.id.schedule_task_button)
+
+        val calendarDays: MutableList<CalendarDay> = ArrayList()
+
+        var calendar = Calendar.getInstance()
+        calendar.set(2024, Calendar.DECEMBER, 25)
+        var calendarDay = CalendarDay(calendar)
+        calendarDay.imageResource = R.drawable.candycane
+        calendarDays.add(calendarDay)
+        events["25-12-2024"] = "Christmas Day"
+
+        calendar = Calendar.getInstance()
+        calendar.set(2024, Calendar.DECEMBER, 31)
+        calendarDay = CalendarDay(calendar)
+        calendarDay.imageResource = R.drawable.glass_flute
+        calendarDays.add(calendarDay)
+        events["31-12-2024"] = "New Year's Eve"
+
+
+        calendarView.setCalendarDays(calendarDays)
+
+        calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
+            override fun onClick(calendarDay: CalendarDay) {
+                val day = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.DAY_OF_MONTH))
+                val month = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.MONTH) + 1) // Months are 0-indexed
+                val year = calendarDay.calendar.get(Calendar.YEAR)
+                if (events.containsKey("$day-$month-$year")) {
+                    Toast.makeText(baseContext, events["$day-$month-$year"], Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(baseContext, "Not busy", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+
+        calendarView.setOnPreviousPageChangeListener(object : OnCalendarPageChangeListener {
+            override fun onChange() {
+                val month = String.format(Locale.getDefault(), "%02d", calendarView.currentPageDate.get(Calendar.MONTH) + 1) // Months are 0-indexed
+                val year = calendarView.currentPageDate.get(Calendar.YEAR)
+                Toast.makeText(baseContext, "$month-$year", Toast.LENGTH_SHORT).show()
+            }
+        })
+        scheduleTaskButton.setOnClickListener {
+            showScheduleTaskDialog()
+        }
+    }
+    private fun showScheduleTaskDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_schedule_task, null)
+        val taskNameEditText: EditText = dialogView.findViewById(R.id.task_name_edit_text)
+        val taskDatePicker: DatePicker = dialogView.findViewById(R.id.task_date_picker)
+        val iconSpinner: Spinner = dialogView.findViewById(R.id.icon_spinner)
+
+        val icons = arrayOf(
+            R.drawable.airplane, R.drawable.atom, R.drawable.baby_bottle_outline, R.drawable.baby_carriage, R.drawable.balloon, R.drawable.baseball, R.drawable.basketball, R.drawable.beach, R.drawable.bee_flower, R.drawable.billiards, R.drawable.bone, R.drawable.book_open_variant, R.drawable.bookshelf, R.drawable.candycane, R.drawable.car_hatchback, R.drawable.cards_playing_outline, R.drawable.cat, R.drawable.check_bold, R.drawable.chess_pawn, R.drawable.church, R.drawable.clover, R.drawable.cross, R.drawable.doctor, R.drawable.dog, R.drawable.egg_easter, R.drawable.email_open_heart_outline, R.drawable.face_man_shimmer, R.drawable.face_woman_shimmer, R.drawable.firework, R.drawable.fish, R.drawable.food, R.drawable.food_off, R.drawable.football, R.drawable.forest, R.drawable.gavel, R.drawable.gift, R.drawable.glass_flute, R.drawable.golf, R.drawable.grill, R.drawable.gym, R.drawable.halloween, R.drawable.heart_multiple, R.drawable.island, R.drawable.laptop, R.drawable.leaf_maple, R.drawable.meditation, R.drawable.menorah, R.drawable.mosque, R.drawable.om, R.drawable.ornament, R.drawable.party_popper, R.drawable.phone_clock, R.drawable.puzzle, R.drawable.ring, R.drawable.sail_boat, R.drawable.saxophone, R.drawable.school, R.drawable.shoe_ballet, R.drawable.slot_machine, R.drawable.snowflake, R.drawable.snowman, R.drawable.soccer, R.drawable.sprout_outline, R.drawable.star_crescent, R.drawable.star_david, R.drawable.stocking, R.drawable.tooth, R.drawable.tractor_variant, R.drawable.turkey, R.drawable.turtle, R.drawable.urgent, R.drawable.volleyball, R.drawable.weather_sunny, R.drawable.work
+        )
+
+        val iconNames = arrayOf(
+            "Airplane", "Atom", "Baby Bottle", "Baby Carriage", "Balloon", "Baseball", "Basketball", "Beach", "Spring Flower", "Billiards", "Bone", "Open Book", "Bookshelf", "Candy Cane", "Car", "Video Call", "Playing Cards", "Cat", "Check", "Chess Pawn", "Church", "Four Leaf Clover", "Cross", "Doctor", "Dog", "Easter Egg", "Valentine Card", "Man Self Care", "Woman Self Care", "Firework", "Fish", "Food", "No Food", "Football", "Forest", "Gavel", "Gift", "Champagne Glass", "Golf", "Grill", "Gym", "Halloween", "Valentine Candy", "Island", "Laptop", "Fall Leaf", "Meditation", "Menorah", "Mosque", "Om", "Christmas Ornament", "Party Popper", "Scheduled Phone Call", "Puzzle Piece", "Ring", "Sail Boat", "Saxophone", "Graduation Cap", "Ballet Shoes", "Slot Machine", "Snowflake", "Snowman", "Soccer Ball", "Plant", "Islamic Crescent", "Star of David", "Christmas Stocking", "Tooth", "Tractor", "Turkey", "Turtle", "Urgent", "Volleyball", "Sun", "Briefcase"
+        )
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, iconNames)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        iconSpinner.adapter = adapter
+
+        AlertDialog.Builder(this)
+            .setTitle("Schedule Task")
+            .setView(dialogView)
+            .setPositiveButton("Save") { dialog, _ ->
+                val taskName = taskNameEditText.text.toString()
+                val day = taskDatePicker.dayOfMonth
+                val month = taskDatePicker.month
+                val year = taskDatePicker.year
+
+                val selectedIconIndex = iconSpinner.selectedItemPosition
+                val selectedIcon = icons[selectedIconIndex]
+
+                val calendar = Calendar.getInstance()
+                calendar.set(year, month, day)
+                val calendarDay = CalendarDay(calendar)
+                calendarDay.imageResource = selectedIcon
+
+                calendarView.setCalendarDays(listOf(calendarDay))
+                events["$day-${month + 1}-$year"] = taskName
+
+                Toast.makeText(this, "Task scheduled", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+            .create()
+            .show()
     }
 }
-
