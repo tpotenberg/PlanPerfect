@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+        <!-- Date picker theme -->
     <style name="CustomDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:datePickerMode">spinner</item> <!-- Use 'calendar' or 'spinner' mode -->
         <item name="android:background">@color/midnight</item>
