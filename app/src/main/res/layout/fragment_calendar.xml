@@ -10,8 +10,8 @@
 
     <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendar"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="411dp"
+            android:layout_height="573dp"
             app:headerColor="@color/jade"
             app:headerLabelColor="@color/midnight"
             app:abbreviationsBarColor="@color/sky"
@@ -19,20 +19,21 @@
             app:layout_constraintBottom_toTopOf="@+id/schedule_task_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:todayLabelColor="@color/mango" />
+            app:todayLabelColor="@color/mango" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"/>
 
     <Button
             android:id="@+id/schedule_task_button"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:text="Schedule Task"
+            android:text="@string/schedule_task"
             android:textColor="@color/midnight"
             android:backgroundTint="@color/mango"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="20dp" app:layout_constraintHorizontal_bias="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

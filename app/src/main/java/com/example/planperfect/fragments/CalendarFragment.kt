@@ -5,12 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.applandeo.materialcalendarview.CalendarDay
 import com.applandeo.materialcalendarview.CalendarView
@@ -18,13 +13,10 @@ import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
 import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentCalendarBinding
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.planperfect.databinding.FragmentHomeBinding
-import com.example.planperfect.utils.adapter.TaskAdapter
-import com.example.planperfect.utils.model.ToDoData
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import java.util.*
+
 
 class CalendarFragment : Fragment() {
     private val TAG = "CalendarFragment"
