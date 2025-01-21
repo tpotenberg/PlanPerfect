@@ -30,7 +30,7 @@ class CalendarFragment : Fragment() {
     private val TAG = "CalendarFragment"
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var calendarView: CalendarView
-    private var events: MutableMap<String, String> = mutableMapOf()
+    private var events: MutableMap<String, MutableList<String>> = mutableMapOf()
     //private lateinit var database: DatabaseReference
     //private var frag: ToDoDialogFragment? = null
     //private lateinit var auth: FirebaseAuth
@@ -61,20 +61,8 @@ class CalendarFragment : Fragment() {
 
         val calendarDays: MutableList<CalendarDay> = ArrayList()
 
-        var calendar = Calendar.getInstance()
-        calendar.set(2024, Calendar.DECEMBER, 25)
-        var calendarDay = CalendarDay(calendar)
-        calendarDay.imageResource = R.drawable.candycane
-        calendarDays.add(calendarDay)
-        events["25-12-2024"] = "Christmas Day"
-
-        calendar = Calendar.getInstance()
-        calendar.set(2024, Calendar.DECEMBER, 31)
-        calendarDay = CalendarDay(calendar)
-        calendarDay.imageResource = R.drawable.glass_flute
-        calendarDays.add(calendarDay)
-        events["31-12-2024"] = "New Year's Eve"
-
+        addTaskToCalendar(2024, Calendar.DECEMBER, 25, "Christmas Day", R.drawable.candycane, calendarDays)
+        addTaskToCalendar(2024, Calendar.DECEMBER, 31, "New Year's Eve", R.drawable.glass_flute, calendarDays)
 
         calendarView.setCalendarDays(calendarDays)
 
@@ -83,10 +71,13 @@ class CalendarFragment : Fragment() {
                 val day = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.DAY_OF_MONTH))
                 val month = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.MONTH) + 1) // Months are 0-indexed
                 val year = calendarDay.calendar.get(Calendar.YEAR)
-                if (events.containsKey("$day-$month-$year")) {
-                    Toast.makeText(context/*baseContext*/, events["$day-$month-$year"], Toast.LENGTH_SHORT).show()
+
+                val key = "$day-$month-$year"
+                if (events.containsKey(key)) {
+                    val taskList = events[key]?.joinToString(", ") ?: "No tasks"
+                    Toast.makeText(context, taskList, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context/*baseContext*/, "Not busy", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Not busy", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -100,10 +91,31 @@ class CalendarFragment : Fragment() {
             }
         })
         scheduleTaskButton.setOnClickListener {
-            showScheduleTaskDialog()
+            showScheduleTaskDialog(calendarDays)
         }
     }
-    private fun showScheduleTaskDialog() {
+
+    private fun addTaskToCalendar(
+        year: Int,
+        month: Int,
+        day: Int,
+        taskName: String,
+        iconResId: Int,
+        calendarDays: MutableList<CalendarDay>
+    ) {
+        val key = String.format("%02d-%02d-%d", day, month + 1, year) // Format date
+        events.getOrPut(key) { mutableListOf() }.add(taskName)
+
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+
+        val calendarDay = CalendarDay(calendar)
+        calendarDay.imageResource = iconResId
+        calendarDays.add(calendarDay)
+    }
+
+
+    private fun showScheduleTaskDialog(calendarDays: MutableList<CalendarDay>) {
         val dialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_schedule_task, null)
         val taskNameEditText: EditText = dialogView.findViewById(R.id.task_name_edit_text)
         val taskDatePicker: DatePicker = dialogView.findViewById(R.id.task_date_picker)
@@ -117,13 +129,12 @@ class CalendarFragment : Fragment() {
             "Airplane", "Atom", "Baby Bottle", "Baby Carriage", "Balloon", "Baseball", "Basketball", "Beach", "Spring Flower", "Billiards", "Bone", "Open Book", "Bookshelf", "Candy Cane", "Car", "Video Call", "Playing Cards", "Cat", "Check", "Chess Pawn", "Church", "Four Leaf Clover", "Cross", "Doctor", "Dog", "Easter Egg", "Valentine Card", "Man Self Care", "Woman Self Care", "Firework", "Fish", "Food", "No Food", "Football", "Forest", "Gavel", "Gift", "Champagne Glass", "Golf", "Grill", "Gym", "Halloween", "Valentine Candy", "Island", "Laptop", "Fall Leaf", "Meditation", "Menorah", "Mosque", "Om", "Christmas Ornament", "Party Popper", "Scheduled Phone Call", "Puzzle Piece", "Ring", "Sail Boat", "Saxophone", "Graduation Cap", "Ballet Shoes", "Slot Machine", "Snowflake", "Snowman", "Soccer Ball", "Plant", "Islamic Crescent", "Star of David", "Christmas Stocking", "Tooth", "Tractor", "Turkey", "Turtle", "Urgent", "Volleyball", "Sun", "Briefcase"
         )
 
-        val adapter = object : ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, iconNames){
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
-                val view = super.getDropDownView(position, convertView, parent)
-                return view
-            }
-        }
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            iconNames
+        )
+
         iconSpinner.adapter = adapter
 
         AlertDialog.Builder(this.context)
@@ -141,14 +152,10 @@ class CalendarFragment : Fragment() {
                     return@setPositiveButton
                 }
                 val selectedIcon = icons[selectedIconIndex]
+                addTaskToCalendar(year, month, day, taskName, selectedIcon, calendarDays)
 
-                val calendar = Calendar.getInstance()
-                calendar.set(year, month, day)
-                val calendarDay = CalendarDay(calendar)
-                calendarDay.imageResource = selectedIcon
 
-                calendarView.setCalendarDays(listOf(calendarDay))
-                events["$day-${month + 1}-$year"] = taskName
+                calendarView.setCalendarDays(calendarDays)
 
                 Toast.makeText(this.context, "Task scheduled", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
