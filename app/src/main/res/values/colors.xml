@@ -12,6 +12,12 @@
     <color name="jade">#5CDD97</color>
     <color name="mango">#F49F06</color>
 
+    <!-- Animated Gradient Colors -->
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorGradientStart">#FF6200EE</color>
+    <color name="colorGradientCenter">#FF018786</color>
+    <color name="colorGradientEnd">#FF3700B3</color>
+
     <color name="text_color">#21108A</color>
     <color name="secondary_color">#D5CEFF</color>
 </resources>
