@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.TimePicker
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -119,6 +120,7 @@ class CalendarFragment : Fragment() {
         val dialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_schedule_task, null)
         val taskNameEditText: EditText = dialogView.findViewById(R.id.task_name_edit_text)
         val taskDatePicker: DatePicker = dialogView.findViewById(R.id.task_date_picker)
+        val taskTimePicker: TimePicker = dialogView.findViewById(R.id.task_time_picker)
         val iconSpinner: Spinner = dialogView.findViewById(R.id.icon_spinner)
 
         val icons = arrayOf(
@@ -145,6 +147,8 @@ class CalendarFragment : Fragment() {
                 val day = taskDatePicker.dayOfMonth
                 val month = taskDatePicker.month
                 val year = taskDatePicker.year
+                val hour = taskTimePicker.hour
+                val minute = taskTimePicker.minute
 
                 val selectedIconIndex = iconSpinner.selectedItemPosition
                 if (selectedIconIndex < 0 || selectedIconIndex >= icons.size) {
@@ -152,8 +156,9 @@ class CalendarFragment : Fragment() {
                     return@setPositiveButton
                 }
                 val selectedIcon = icons[selectedIconIndex]
-                addTaskToCalendar(year, month, day, taskName, selectedIcon, calendarDays)
-
+                val timeFormatted = String.format("%02d:%02d", hour, minute)
+                val taskWithTime = "$taskName at $timeFormatted"
+                addTaskToCalendar(year, month, day, taskWithTime, selectedIcon, calendarDays)
 
                 calendarView.setCalendarDays(calendarDays)
 
