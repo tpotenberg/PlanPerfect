@@ -123,6 +123,8 @@ class CalendarFragment : Fragment() {
         val taskTimePicker: TimePicker = dialogView.findViewById(R.id.task_time_picker)
         val iconSpinner: Spinner = dialogView.findViewById(R.id.icon_spinner)
 
+        taskTimePicker.setIs24HourView(true)
+
         val icons = arrayOf(
             R.drawable.airplane, R.drawable.atom, R.drawable.baby_bottle_outline, R.drawable.baby_carriage, R.drawable.balloon, R.drawable.baseball, R.drawable.basketball, R.drawable.beach, R.drawable.bee_flower, R.drawable.billiards, R.drawable.bone, R.drawable.book_open_variant, R.drawable.bookshelf, R.drawable.candycane, R.drawable.car_hatchback, R.drawable.card_account_phone, R.drawable.cards_playing_outline, R.drawable.cat, R.drawable.check_bold, R.drawable.chess_pawn, R.drawable.church, R.drawable.clover, R.drawable.cross, R.drawable.doctor, R.drawable.dog, R.drawable.egg_easter, R.drawable.email_open_heart_outline, R.drawable.face_man_shimmer, R.drawable.face_woman_shimmer, R.drawable.firework, R.drawable.fish, R.drawable.food, R.drawable.food_off, R.drawable.football, R.drawable.forest, R.drawable.gavel, R.drawable.gift, R.drawable.glass_flute, R.drawable.golf, R.drawable.grill, R.drawable.gym, R.drawable.halloween, R.drawable.heart_multiple, R.drawable.island, R.drawable.laptop, R.drawable.leaf_maple, R.drawable.meditation, R.drawable.menorah, R.drawable.mosque, R.drawable.om, R.drawable.ornament, R.drawable.party_popper, R.drawable.phone_clock, R.drawable.puzzle, R.drawable.ring, R.drawable.sail_boat, R.drawable.saxophone, R.drawable.school, R.drawable.shoe_ballet, R.drawable.slot_machine, R.drawable.snowflake, R.drawable.snowman, R.drawable.soccer, R.drawable.sprout_outline, R.drawable.star_crescent, R.drawable.star_david, R.drawable.stocking, R.drawable.tooth, R.drawable.tractor_variant, R.drawable.turkey, R.drawable.turtle, R.drawable.urgent, R.drawable.volleyball, R.drawable.weather_sunny, R.drawable.work
         )
@@ -147,8 +149,18 @@ class CalendarFragment : Fragment() {
                 val day = taskDatePicker.dayOfMonth
                 val month = taskDatePicker.month
                 val year = taskDatePicker.year
-                val hour = taskTimePicker.hour
-                val minute = taskTimePicker.minute
+
+                val hour = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    taskTimePicker.hour
+                } else {
+                    taskTimePicker.currentHour
+                }
+
+                val minute = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    taskTimePicker.minute
+                } else {
+                    taskTimePicker.currentMinute
+                }
 
                 val selectedIconIndex = iconSpinner.selectedItemPosition
                 if (selectedIconIndex < 0 || selectedIconIndex >= icons.size) {

@@ -10,8 +10,9 @@
             android:id="@+id/task_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Name"
+            android:hint="@string/task_name_hint"
             android:inputType="text"
+            android:autofillHints="taskName"
             android:minHeight="48dp"
             android:layout_marginBottom="16dp"
             android:theme="@style/CustomDatePickerStyle" />
@@ -34,9 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:timePickerMode="spinner"
-                android:hour="12"
-                android:minute="0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:theme="@style/CustomDatePickerStyle"/>
 
         <Spinner
                 android:id="@+id/icon_spinner"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:layout_weight="1"
-                android:layout_marginStart="16dp" />
+                android:layout_marginStart="16dp"/>
     </LinearLayout>
 </LinearLayout>
 
