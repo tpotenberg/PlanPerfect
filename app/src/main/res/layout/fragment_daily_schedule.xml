@@ -29,15 +29,16 @@
             android:clipToPadding="false"
             android:paddingBottom="8dp" />
 
-    <!-- Floating Action Button to Add New Tasks -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_task_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
+    <!-- Button to Schedule Tasks -->
+    <Button
+            android:id="@+id/schedule_task_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Schedule Task"
+            android:textStyle="bold"
+            android:textColor="@color/midnight"
             android:backgroundTint="@color/jade"
-            android:src="@drawable/calendar_plus"
-            android:contentDescription="Add Task" />
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp" />
 
 </LinearLayout>

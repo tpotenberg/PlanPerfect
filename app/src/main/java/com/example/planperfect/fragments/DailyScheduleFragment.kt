@@ -1,12 +1,12 @@
 package com.example.planperfect.fragments
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DailyScheduleFragment : AppCompatActivity() {
 
@@ -24,9 +24,9 @@ class DailyScheduleFragment : AppCompatActivity() {
         adapter = TaskAdapter(taskList)
         recyclerView.adapter = adapter
 
-        // Floating Action Button to Add a Task
-        val addTaskFab: FloatingActionButton = findViewById(R.id.add_task_fab)
-        addTaskFab.setOnClickListener {
+        // Schedule Task Button
+        val scheduleTaskButton: Button = findViewById(R.id.schedule_task_button)
+        scheduleTaskButton.setOnClickListener {
             openScheduleTaskDialog()
         }
     }
