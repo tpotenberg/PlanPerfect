@@ -107,11 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-    <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp" />
+
 
     <!-- Quick Add Task Button -->
     <Button
