@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         getTaskFromFirebase()
 
 
-        binding.addTaskBtn.setOnClickListener {
+        binding.btnQuickAddTask.setOnClickListener {
 
             if (frag != null)
                 childFragmentManager.beginTransaction().remove(frag!!).commit()
