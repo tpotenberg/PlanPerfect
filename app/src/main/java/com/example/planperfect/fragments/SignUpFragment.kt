@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentSignUpBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -30,8 +31,7 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        
         init(view)
 
         binding.textViewSignIn.setOnClickListener {
@@ -39,9 +39,9 @@ class SignUpFragment : Fragment() {
         }
 
         binding.nextBtn.setOnClickListener {
-            val email = binding.emailEt.text.toString()
-            val pass = binding.passEt.text.toString()
-            val verifyPass = binding.verifyPassEt.text.toString()
+            val email = binding.emailEt.text.toString().trim()
+            val pass = binding.passEt.text.toString().trim()
+            val verifyPass = binding.verifyPassEt.text.toString().trim()
 
             if (email.isNotEmpty() && pass.isNotEmpty() && verifyPass.isNotEmpty()) {
                 if (pass == verifyPass) {
@@ -59,10 +59,12 @@ class SignUpFragment : Fragment() {
 
     private fun registerUser(email: String, pass: String) {
         mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-            if (it.isSuccessful)
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.action_signUpFragment_to_homeFragment)
-            else
-                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
 
         }
     }

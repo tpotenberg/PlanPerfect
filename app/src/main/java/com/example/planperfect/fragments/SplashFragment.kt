@@ -34,14 +34,14 @@ class SplashFragment : Fragment() {
 
         init(view)
 
-        val isLogin: Boolean = mAuth.currentUser != null
+        Handler(Looper.myLooper()!!).postDelayed(Runnable{
 
-        val handler = Handler(Looper.myLooper()!!)
-        handler.postDelayed({
-
-//            if (isLogin)
-//                navController.navigate(R.id.action_splashFragment_to_homeFragment)
-//            else
+            if (mAuth.currentUser != null) {
+                // User is all ready logged in - show home page
+                navController.navigate(R.id.action_splashFragment_to_homeFragment)
+            }
+            else
+                // User is not logged in - show sign in page
                 navController.navigate(R.id.action_splashFragment_to_signInFragment)
 
         }, 2000)
