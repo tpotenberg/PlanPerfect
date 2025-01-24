@@ -51,11 +51,13 @@ class SignInFragment : Fragment() {
 
     private fun loginUser(email: String, pass: String) {
         mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-            if (it.isSuccessful)
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.action_signInFragment_to_homeFragment)
-            else
+            }
+            else {
                 Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
+            }
         }
     }
 

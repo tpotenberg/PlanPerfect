@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         getTaskFromFirebase()
 
 
-        binding.addTaskBtn.setOnClickListener {
+        binding.btnQuickAddTask.setOnClickListener {
 
             if (frag != null)
                 childFragmentManager.beginTransaction().remove(frag!!).commit()
@@ -99,7 +99,7 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
         auth = FirebaseAuth.getInstance()
         authId = auth.currentUser!!.uid
         //database = Firebase.database.reference.child("Tasks").child(authId)
-        database = FirebaseDatabase.getInstance().reference.root
+        database = FirebaseDatabase.getInstance().reference
 
         binding.mainRecyclerView.setHasFixedSize(true)
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)

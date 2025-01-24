@@ -1,5 +1,6 @@
 package com.example.planperfect.fragments
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -24,6 +25,7 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
@@ -32,14 +34,14 @@ class SplashFragment : Fragment() {
 
         init(view)
 
-        val isLogin: Boolean = mAuth.currentUser != null
+        Handler(Looper.myLooper()!!).postDelayed(Runnable{
 
-        val handler = Handler(Looper.myLooper()!!)
-        handler.postDelayed({
-
-            if (isLogin)
+            if (mAuth.currentUser != null) {
+                // User is all ready logged in - show home page
                 navController.navigate(R.id.action_splashFragment_to_homeFragment)
+            }
             else
+                // User is not logged in - show sign in page
                 navController.navigate(R.id.action_splashFragment_to_signInFragment)
 
         }, 2000)
