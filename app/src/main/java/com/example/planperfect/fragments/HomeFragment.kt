@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentHomeBinding
 import com.example.planperfect.utils.adapter.TaskAdapter
 import com.example.planperfect.utils.model.ToDoData
@@ -50,7 +51,6 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
 
         //get data from firebase
         getTaskFromFirebase()
-
 
         binding.btnQuickAddTask.setOnClickListener {
 
