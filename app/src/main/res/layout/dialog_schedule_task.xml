@@ -10,11 +10,12 @@
             android:id="@+id/task_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Name"
+            android:hint="@string/task_name_hint"
             android:inputType="text"
+            android:autofillHints="taskName"
             android:minHeight="48dp"
             android:layout_marginBottom="16dp"
-            android:theme="@style/CustomDatePickerStyle"/>
+            android:theme="@style/CustomDatePickerStyle" />
 
     <DatePicker
             android:id="@+id/task_date_picker"
@@ -23,13 +24,28 @@
             android:layout_marginBottom="16dp"
             android:theme="@style/CustomDatePickerStyle" />
 
-    <Spinner
-            android:id="@+id/icon_spinner"
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            />
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+        <TimePicker
+                android:id="@+id/task_time_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_weight="1"
+                android:theme="@style/CustomDatePickerStyle"/>
+
+        <Spinner
+                android:id="@+id/icon_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"/>
+    </LinearLayout>
 </LinearLayout>
+
 

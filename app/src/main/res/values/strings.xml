@@ -8,4 +8,5 @@
     <string name="type_your_task">Type your task .....</string>
     <string name="logout">Logout</string>
     <string name="schedule_task">Schedule Task</string>
+    <string name="task_name_hint">Task Name</string>
 </resources>
