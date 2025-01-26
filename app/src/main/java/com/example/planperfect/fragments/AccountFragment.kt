@@ -26,7 +26,7 @@ class AccountFragment : Fragment() {
     private val TAG = "AccountFragment"
     private lateinit var binding: FragmentAccountBinding
     private lateinit var database: DatabaseReference
-    private var frag: ToDoDialogFragment? = null
+    //private var frag: ToDoDialogFragment? = null
     private lateinit var auth: FirebaseAuth
     private lateinit var authId: String
 

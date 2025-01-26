@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentHomeBinding
@@ -19,26 +21,21 @@ import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.database.DatabaseReference
 //import com.google.firebase.database.ValueEventListener
 //import com.google.firebase.database
-import com.google.firebase.Firebase
 import com.google.firebase.database.*
 
-class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener,
-    TaskAdapter.TaskAdapterInterface {
+class HomeFragment : Fragment() {
 
     private val TAG = "HomeFragment"
     private lateinit var binding: FragmentHomeBinding
     private lateinit var database: DatabaseReference
-    private var frag: ToDoDialogFragment? = null
     private lateinit var auth: FirebaseAuth
     private lateinit var authId: String
-
-    private lateinit var taskAdapter: TaskAdapter
-    private lateinit var toDoItemList: MutableList<ToDoData>
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,119 +44,29 @@ class HomeFragment : Fragment(), ToDoDialogFragment.OnDialogNextBtnClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
-
-        //get data from firebase
-        getTaskFromFirebase()
+        init(view)
 
         binding.btnQuickAddTask.setOnClickListener {
 
-            if (frag != null)
-                childFragmentManager.beginTransaction().remove(frag!!).commit()
-            frag = ToDoDialogFragment()
-            frag!!.setListener(this)
-
-            frag!!.show(
-                childFragmentManager,
-                ToDoDialogFragment.TAG
-            )
+            navController.navigate(R.id.action_homeFragment_to_calendarFragment)
 
         }
     }
 
-    private fun getTaskFromFirebase() {
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                toDoItemList.clear()
-                for (taskSnapshot in snapshot.children) {
-                    val todoTask =
-                        taskSnapshot.key?.let { ToDoData(it, taskSnapshot.value.toString()) }
-
-                    if (todoTask != null) {
-                        toDoItemList.add(todoTask)
-                    }
-
-                }
-                Log.d(TAG, "onDataChange: " + toDoItemList)
-                taskAdapter.notifyDataSetChanged()
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
-            }
 
 
-        })
-    }
-
-    private fun init() {
+    private fun init(view : View) {
 
         auth = FirebaseAuth.getInstance()
         authId = auth.currentUser!!.uid
         //database = Firebase.database.reference.child("Tasks").child(authId)
         database = FirebaseDatabase.getInstance().reference
 
+        navController = Navigation.findNavController(view)
+
         binding.mainRecyclerView.setHasFixedSize(true)
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        toDoItemList = mutableListOf()
-        taskAdapter = TaskAdapter(toDoItemList)
-        taskAdapter.setListener(this)
-        binding.mainRecyclerView.adapter = taskAdapter
-    }
-
-    override fun saveTask(todoTask: String, todoEdit: TextInputEditText) {
-
-        database
-            .push().setValue(todoTask)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Toast.makeText(context, "Task Added Successfully", Toast.LENGTH_SHORT).show()
-                    todoEdit.text = null
-
-                } else {
-                    Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                }
-            }
-        frag!!.dismiss()
-
-    }
-
-    override fun updateTask(toDoData: ToDoData, todoEdit: TextInputEditText) {
-        val map = HashMap<String, Any>()
-        map[toDoData.taskId] = toDoData.task
-        database.updateChildren(map).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
-            frag!!.dismiss()
-        }
-    }
-
-    override fun onDeleteItemClicked(toDoData: ToDoData, position: Int) {
-        database.child(toDoData.taskId).removeValue().addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    override fun onEditItemClicked(toDoData: ToDoData, position: Int) {
-        if (frag != null)
-            childFragmentManager.beginTransaction().remove(frag!!).commit()
-
-        frag = ToDoDialogFragment.newInstance(toDoData.taskId, toDoData.task)
-        frag!!.setListener(this)
-        frag!!.show(
-            childFragmentManager,
-            ToDoDialogFragment.TAG
-        )
     }
 
 }

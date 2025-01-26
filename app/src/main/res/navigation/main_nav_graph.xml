@@ -27,6 +27,7 @@
             android:name="com.example.planperfect.fragments.SignInFragment"
             android:label="fragment_sign_in"
             tools:layout="@layout/fragment_sign_in">
+
         <action
                 android:id="@+id/action_signInFragment_to_signUpFragment"
                 app:destination="@id/signUpFragment"
@@ -63,5 +64,12 @@
             android:id="@+id/homeFragment"
             android:name="com.example.planperfect.fragments.HomeFragment"
             android:label="fragment_home"
-            tools:layout="@layout/fragment_home" />
+            tools:layout="@layout/fragment_home">
+
+        <action
+                android:id="@+id/action_homeFragment_to_calendarFragment"
+                app:destination="@id/calendarFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
