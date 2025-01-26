@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AboutPage xmlns:android="http://schemas.android.com/apk/res/android"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
-</AboutPage>
+    <TextView
+            android:id="@+id/aboutPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <TextView
+            android:id="@+id/aboutDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="This application was created as part of a team project to help users track their daily tasks efficiently. It features an intuitive design, customizable settings, and easy navigation to improve productivity."
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/aboutPageTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <TextView
+            android:id="@+id/teamHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Members:"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/aboutDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    <TextView
+            android:id="@+id/teamMembers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="- Gabriel: Main Page \n- Tyler: database, login and Merge Coordination\n- Alexis: Core Features and Final Testing"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:lineSpacingExtra="4dp"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/teamHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+            android:id="@+id/versionHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App Version:"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/teamMembers"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    <TextView
+            android:id="@+id/appVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 1.0.0"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            app:layout_constraintTop_toBottomOf="@id/versionHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp" />
+
+    <TextView
+            android:id="@+id/copyrightHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copyright:"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/appVersion"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    <TextView
+            android:id="@+id/copyrightInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2025 Team Productivity Tracker"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            app:layout_constraintTop_toBottomOf="@id/copyrightHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
