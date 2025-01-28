@@ -53,4 +53,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="enter_your_name">Enter your name ..</string>
     <string name="sign_up">Sign Up</string>
+    <string name="update_username">Update username ...</string>
+    <string name="update_password">Update password ...</string>
+    <string name="update_email_adress">Update email adress ...</string>
 </resources>

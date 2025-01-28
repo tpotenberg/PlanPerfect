@@ -1,7 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Page Header -->
+        <TextView
+                android:id="@+id/helpHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Help and Support"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="16dp" />
+
+        <!-- Section 1: Introduction -->
+        <TextView
+                android:id="@+id/helpIntroductionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Getting Started"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+        <TextView
+                android:id="@+id/helpIntroductionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This app helps you manage your tasks and settings easily. Use the menu to navigate between pages and access features."
+                android:textSize="16sp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black" />
+
+        <!-- Section 2: FAQ -->
+        <TextView
+                android:id="@+id/helpFAQLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frequently Asked Questions"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+        <TextView
+                android:id="@+id/helpFAQText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. How do I add a task?\n- Navigate to the tasks page and click the 'Add Task' button.\n\n2. Can I customize the app theme?\n- Yes, go to the settings page to change the theme."
+                android:textSize="16sp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black" />
+
+        <!-- Section 3: Troubleshooting -->
+        <TextView
+                android:id="@+id/helpTroubleshootingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Troubleshooting"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+        <TextView
+                android:id="@+id/helpTroubleshootingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="If the app is not working as expected, try restarting it. For persistent issues, contact support at support@example.com."
+                android:textSize="16sp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black" />
+
+        <!-- Section 4: Contact Support -->
+        <TextView
+                android:id="@+id/helpContactLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact Support"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+        <TextView
+                android:id="@+id/helpContactText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For further assistance, email us at support@example.com or call +1-800-123-4567."
+                android:textSize="16sp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,10 +1,148 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/settings"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_animation"
+        android:padding="16dp">
 
-</LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Header -->
+        <TextView
+                android:id="@+id/settingsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                android:textColor="#000000" />
+
+        <!-- Notification Setting -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp">
+
+            <TextView
+                    android:id="@+id/notificationLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enable Notifications"
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
+
+            <Switch
+                    android:id="@+id/notificationSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!-- Theme Selection -->
+        <TextView
+                android:id="@+id/themeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Theme"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000000" />
+
+        <Spinner
+                android:id="@+id/themeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/theme_options"
+                android:background="#FFFFFF"
+                android:padding="12dp"
+                android:elevation="2dp" />
+
+        <!-- Update userName -->
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userEt"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:hint="@string/update_username"
+                android:gravity="top"
+                android:layout_marginTop="26dp"
+                android:inputType="text"
+                android:padding="12dp"
+                android:paddingTop="15dp" />
+
+        <!-- Update userName -->
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEt"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:hint="@string/update_email_adress"
+                android:gravity="top"
+                android:layout_marginTop="16dp"
+                android:inputType="text"
+                android:padding="12dp"
+                android:paddingTop="15dp" />
+
+        <!-- Update userName -->
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passEt"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:hint="@string/update_password"
+                android:gravity="top"
+                android:layout_marginTop="16dp"
+                android:inputType="text"
+                android:padding="12dp"
+                android:paddingTop="15dp" />
+
+        <!-- Feedback Option -->
+        <TextView
+                android:id="@+id/feedbackLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send Feedback"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="56dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000000" />
+
+        <EditText
+                android:id="@+id/feedbackInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your feedback here..."
+                android:background="#FFFFFF"
+                android:padding="12dp"
+                android:gravity="top"
+                android:minHeight="100dp"
+                android:inputType="textMultiLine"
+                android:elevation="2dp" />
+
+        <!-- Save Button -->
+        <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Settings"
+                android:textAllCaps="false"
+                android:backgroundTint="#000000"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:padding="12dp"
+                android:elevation="4dp" />
+
+    </LinearLayout>
+</ScrollView>
