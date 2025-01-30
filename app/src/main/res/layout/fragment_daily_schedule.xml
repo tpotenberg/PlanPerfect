@@ -11,13 +11,25 @@
             android:id="@+id/daily_schedule_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily Schedule"
+            android:text="@string/daily_schedule_title"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/midnight"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:paddingBottom="16dp" />
+    <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_label"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/midnight"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp" />
+
 
     <!-- RecyclerView for Tasks -->
     <androidx.recyclerview.widget.RecyclerView
@@ -35,7 +47,7 @@
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
-            android:text="Schedule Task"
+            android:text="@string/schedule_task_button"
             android:textStyle="bold"
             android:textColor="@color/midnight"
             android:backgroundTint="@color/jade"

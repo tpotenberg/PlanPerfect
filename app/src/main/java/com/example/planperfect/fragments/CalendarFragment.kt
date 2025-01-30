@@ -60,13 +60,16 @@ class CalendarFragment : Fragment() {
                 val month = String.format(Locale.getDefault(), "%02d", calendarDay.calendar.get(Calendar.MONTH) + 1) // Months are 0-indexed
                 val year = calendarDay.calendar.get(Calendar.YEAR)
 
-                val key = "$day-$month-$year"
-                if (events.containsKey(key)) {
-                    val taskList = events[key]?.joinToString(", ") ?: "No tasks"
-                    Toast.makeText(context, taskList, Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Not busy", Toast.LENGTH_SHORT).show()
+                val selectedDate = "$day-$month-$year"
+                val dailyScheduleFragment = DailyScheduleFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("selectedDate", selectedDate) // Pass the selected date
+                    }
                 }
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, dailyScheduleFragment) // Make sure R.id.fragment_container is your fragment container
+                    .addToBackStack(null) // Allows back navigation
+                    .commit()
             }
         })
 
