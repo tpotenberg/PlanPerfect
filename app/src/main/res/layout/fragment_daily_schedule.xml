@@ -32,8 +32,9 @@
     <!-- Button to Schedule Tasks -->
     <Button
             android:id="@+id/schedule_task_button"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
             android:text="Schedule Task"
             android:textStyle="bold"
             android:textColor="@color/midnight"
