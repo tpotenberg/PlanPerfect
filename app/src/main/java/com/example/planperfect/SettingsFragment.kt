@@ -1,4 +1,4 @@
 package com.example.planperfect
 
-class SettingsActivity {
+class SettingsFragment {
 }
