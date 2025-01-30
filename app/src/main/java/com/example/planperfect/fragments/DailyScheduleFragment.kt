@@ -33,6 +33,7 @@ class DailyScheduleFragment : Fragment() {
         adapter = TaskAdapter(taskList)
         recyclerView.adapter = adapter
 
+
         // Schedule Task Button
         val scheduleTaskButton: Button = view.findViewById(R.id.schedule_task_button)
         scheduleTaskButton.setOnClickListener {
@@ -45,7 +46,7 @@ class DailyScheduleFragment : Fragment() {
         // Show the existing schedule task dialog
         ScheduleTaskDaily(requireContext()) { task ->
             taskList.add(task)
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemInserted(taskList.size - 1)  // More efficient than notifyDataSetChanged()
             Toast.makeText(requireContext(), "Task added successfully", Toast.LENGTH_SHORT).show()
         }.show()
     }

@@ -15,6 +15,8 @@
     <string name="date_label">Date</string>
     <string name="schedule_task_button">Schedule Task</string>
     <string name="task_icon">Task Icon</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_time">Task Time</string>
 
 
     <!-- Home Page Strings -->

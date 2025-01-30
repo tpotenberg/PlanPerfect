@@ -10,6 +10,12 @@ import com.example.planperfect.R
 
 class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val taskName: TextView = itemView.findViewById(R.id.task_name)
+        val taskTime: TextView = itemView.findViewById(R.id.task_time)
+        val taskIcon: ImageView = itemView.findViewById(R.id.task_icon)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
         return TaskViewHolder(view)
@@ -24,9 +30,4 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
 
     override fun getItemCount(): Int = tasks.size
 
-    class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val taskName: TextView = view.findViewById(R.id.task_name)
-        val taskTime: TextView = view.findViewById(R.id.task_time)
-        val taskIcon: ImageView = view.findViewById(R.id.task_icon)
-    }
 }
