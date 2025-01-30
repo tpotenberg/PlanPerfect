@@ -8,6 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.R
 
+//test data for debugging
+private val tasks = listOf(
+    Task("Test Meeting", "9:00 AM", 12),
+    Task("Test Workout", "5:00 PM", 42)
+)
+
 class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
