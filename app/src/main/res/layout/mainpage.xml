@@ -5,41 +5,86 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_animation"
-        tools:context=".fragments.HomeFragment">
+        android:padding="16dp"
+        android:background="@drawable/x2"
+        tools:context=".MainActivity">
 
     <!-- Profile Section -->
     <TextView
             android:id="@+id/profileName"
-            android:layout_width="184dp"
-            android:layout_height="66dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/john_doe"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.5"/>
+            android:layout_marginTop="16dp" />
 
-    <!-- App Title -->
-
-    <!-- Date and Time -->
     <TextView
-            android:id="@+id/dateTimeDisplay"
-            android:layout_width="354dp"
-            android:layout_height="44dp"
-            android:text="@string/date_time_example"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="18sp"
+            android:id="@+id/profileSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_back"
+            android:textSize="14sp"
+            android:textColor="#808080"
             app:layout_constraintTop_toBottomOf="@id/profileName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-    <!-- Task List Label -->
+    <!-- App Title -->
+    <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_perfect"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profileSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <!-- Date and Time -->
+    <TextView
+            android:id="@+id/dateTimeDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_time_example"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/appTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Welcome Message -->
+    <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_option"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/dateTimeDisplay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+    <!-- Motivational Quote -->
+    <TextView
+            android:id="@+id/motivationalQuote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/secret_quote"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Task List Section -->
     <TextView
             android:id="@+id/taskListLabel"
             android:layout_width="wrap_content"
@@ -47,16 +92,14 @@
             android:text="@string/your_tasks"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/dateTimeDisplay"
+            app:layout_constraintTop_toBottomOf="@id/motivationalQuote"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
 
-    <!-- Task List RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainRecyclerView"
+            android:id="@+id/taskRecyclerView"
             android:layout_width="0dp"
-            android:layout_height="292dp"
+            android:layout_height="200dp"
             android:background="#F0F0F0"
             android:padding="8dp"
             app:layout_constraintTop_toBottomOf="@id/taskListLabel"
@@ -64,26 +107,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-    <!-- Quick Add Task Button -->
 
-    <!-- Today's Progress Section -->
+
+    <!-- Quick Add Task Button -->
     <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/btnQuickAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Calendar"
-            android:textColor="@color/midnight"
-            android:backgroundTint="@color/mango"
-            app:layout_constraintTop_toBottomOf="@id/mainRecyclerView"
+            android:text="@string/quick_add_task"
+            app:layout_constraintTop_toBottomOf="@id/taskRecyclerView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.498"/>
+            android:layout_marginTop="16dp" />
+
+    <!-- Today's Progress Section -->
     <TextView
             android:id="@+id/progressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/today_progress"
-            android:textColor="@color/mango"
             app:layout_constraintTop_toBottomOf="@id/btnQuickAddTask"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,45 +156,59 @@
             android:layout_marginTop="24dp">
 
         <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/btnSettings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/settings"
-                android:textColor="@color/mango"
-                android:backgroundTint="@color/midnight" />
+                android:text="@string/settings" />
 
         <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/btnHelp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/help"
-                android:textColor="@color/mango"
-                android:backgroundTint="@color/midnight" />
+                android:text="@string/help" />
 
         <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/btnAbout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/about"
-                android:textColor="@color/mango"
-                android:backgroundTint="@color/midnight" />
+                android:text="@string/about" />
     </LinearLayout>
 
-    <!-- Calendar Icon -->
+    <!-- ImageViews -->
     <ImageView
-            android:id="@+id/calendarPlus"
-            android:layout_width="70dp"
-            android:layout_height="65dp"
-            app:srcCompat="@drawable/calendar_plus"
+            android:id="@+id/imageView"
+            android:layout_width="41dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/icons8_calendar_50"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp" />
 
-    <!-- User Icon -->
+    <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="39dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/icons8_plus_60"
+            app:layout_constraintTop_toBottomOf="@id/taskRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="8dp"/>
+
+    <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="35dp"
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/icons8_favorites_50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageView"
+            android:layout_marginEnd="16dp" android:layout_marginTop="16dp"/>
     <ImageView
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
@@ -160,20 +217,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"/>
-
-
-    <!-- No recycler view for now
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="42dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addTaskBtn" />
--->
+            android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

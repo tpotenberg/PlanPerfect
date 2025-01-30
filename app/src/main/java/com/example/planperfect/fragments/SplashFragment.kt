@@ -7,11 +7,14 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.planperfect.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.protobuf.NullValue
 
 
 class SplashFragment : Fragment() {
@@ -34,6 +37,18 @@ class SplashFragment : Fragment() {
 
         init(view)
 
+        var isLogin: Boolean = false
+        //isLogin = mAuth.currentUser != null
+
+        val handler = Handler(Looper.myLooper()!!)
+        handler.postDelayed({
+
+            if (isLogin)
+                navController.navigate(R.id.action_splashFragment_to_homeFragment)
+            else
+                navController.navigate(R.id.action_splashFragment_to_signInFragment)
+        }, 2000)
+        /*
         Handler(Looper.myLooper()!!).postDelayed(Runnable{
 
             if (mAuth.currentUser != null) {
@@ -44,7 +59,8 @@ class SplashFragment : Fragment() {
                 // User is not logged in - show sign in page
                 navController.navigate(R.id.action_splashFragment_to_signInFragment)
 
-        }, 2000)
+        }, 2000)*/
+
     }
 
     private fun init(view: View) {

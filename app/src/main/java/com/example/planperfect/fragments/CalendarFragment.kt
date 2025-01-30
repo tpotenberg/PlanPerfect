@@ -29,17 +29,7 @@ class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var calendarView: CalendarView
     private var events: MutableMap<String, MutableList<String>> = mutableMapOf()
-    //private lateinit var database: DatabaseReference
-    //private var frag: ToDoDialogFragment? = null
-    //private lateinit var auth: FirebaseAuth
-    //private lateinit var authId: String
 
-    //private lateinit var taskAdapter: TaskAdapter
-    //private lateinit var toDoItemList: MutableList<ToDoData>
-    /*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

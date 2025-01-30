@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.databinding.EachTodoItemBinding
+import com.example.planperfect.fragments.HomeFragment
 import com.example.planperfect.utils.model.ToDoData
 
 class TaskAdapter(private val list: MutableList<ToDoData>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     private  val TAG = "TaskAdapter"
     private var listener:TaskAdapterInterface? = null
+
     fun setListener(listener:TaskAdapterInterface){
         this.listener = listener
     }
