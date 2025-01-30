@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
+import com.example.planperfect.databinding.FragmentHelpBinding
 import com.example.planperfect.databinding.FragmentHomeBinding
 import com.example.planperfect.utils.adapter.TaskAdapter
 import com.example.planperfect.utils.model.ToDoData
@@ -24,10 +25,10 @@ import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.database
 import com.google.firebase.database.*
 
-class HomeFragment : Fragment() {
+class HelpFragment : Fragment() {
 
-    private val TAG = "HomeFragment"
-    private lateinit var binding: FragmentHomeBinding
+    private val TAG = "HelpFragment"
+    private lateinit var binding: FragmentHelpBinding
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var authId: String
@@ -38,7 +39,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHelpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,28 +48,10 @@ class HomeFragment : Fragment() {
 
         init(view)
 
-        binding.profileName.text = auth.currentUser?.displayName
-
-        binding.btnQuickAddTask.setOnClickListener {
-
-            navController.navigate(R.id.action_homeFragment_to_calendarFragment)
-
-        }
-
-        binding.btnSettings.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_settingsFragment)
-        }
-
-        binding.btnHelp.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_helpFragment)
-        }
-
-        binding.btnAbout.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_aboutFragment)
+        binding.backButton.setOnClickListener {
+            navController.navigate(R.id.action_helpFragment_to_homeFragment)
         }
     }
-
-
 
     private fun init(view : View) {
 
@@ -78,9 +61,6 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance().reference
 
         navController = Navigation.findNavController(view)
-
-        binding.mainRecyclerView.setHasFixedSize(true)
-        binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
 
     }
 

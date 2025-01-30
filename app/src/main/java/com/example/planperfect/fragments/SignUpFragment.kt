@@ -75,12 +75,11 @@ class SignUpFragment : Fragment() {
                 user!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(context, "User profile updated.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
+                            navController.navigate(R.id.action_signUpFragment_to_homeFragment)
                         }
                     }
 
-                Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_signUpFragment_to_homeFragment)
             } else {
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }

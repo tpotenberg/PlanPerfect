@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.database
 import com.google.firebase.database.*
 
-class HomeFragment : Fragment() {
+class AboutFragment : Fragment() {
 
     private val TAG = "HomeFragment"
     private lateinit var binding: FragmentHomeBinding

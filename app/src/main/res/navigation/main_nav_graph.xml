@@ -61,6 +61,28 @@
             android:label="fragment_calendar"
             tools:layout="@layout/fragment_calendar" />
     <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.example.planperfect.fragments.SettingsFragment"
+            android:label="fragment_calendar"
+            tools:layout="@layout/fragment_settings" />
+    <fragment
+            android:id="@+id/helpFragment"
+            android:name="com.example.planperfect.fragments.HelpFragment"
+            android:label="fragment_calendar"
+            tools:layout="@layout/fragment_help" >
+        <action
+                android:id="@+id/action_helpFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/signUpFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/aboutFragment"
+            android:name="com.example.planperfect.fragments.AboutFragment"
+            android:label="fragment_calendar"
+            tools:layout="@layout/fragment_about" />
+    <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.planperfect.fragments.HomeFragment"
             android:label="fragment_home"
@@ -69,6 +91,24 @@
         <action
                 android:id="@+id/action_homeFragment_to_calendarFragment"
                 app:destination="@id/calendarFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true" />
+
+        <action
+                android:id="@+id/action_homeFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true" />
+
+        <action
+                android:id="@+id/action_homeFragment_to_helpFragment"
+                app:destination="@id/helpFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true" />
+
+        <action
+                android:id="@+id/action_homeFragment_to_aboutFragment"
+                app:destination="@id/aboutFragment"
                 app:popUpTo="@id/homeFragment"
                 app:popUpToInclusive="true" />
     </fragment>
