@@ -49,12 +49,11 @@ class AboutFragment : Fragment() {
 
         binding.profileName.text = auth.currentUser?.displayName
 
-        binding.btnQuickAddTask.setOnClickListener {
+        binding.calendarPlus.setOnClickListener {
 
             navController.navigate(R.id.action_homeFragment_to_calendarFragment)
 
         }
-
         binding.btnSettings.setOnClickListener {
             navController.navigate(R.id.action_homeFragment_to_settingsFragment)
         }
@@ -79,8 +78,8 @@ class AboutFragment : Fragment() {
 
         navController = Navigation.findNavController(view)
 
-        binding.mainRecyclerView.setHasFixedSize(true)
-        binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
+       // binding.mainRecyclerView.setHasFixedSize(true)
+       // binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
 
     }
 
