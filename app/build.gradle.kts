@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
 }
 
 android {
@@ -31,6 +32,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

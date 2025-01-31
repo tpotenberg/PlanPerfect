@@ -1,7 +1,9 @@
 package com.example.planperfect.fragments
 
 data class Task(
-    val name: String,
-    val time: String,
-    val iconResId: Int
+    val id: String = "",
+    val name: String = "",
+    val time: String = "",
+    //val date: String = "",
+    val iconResId: Int = 0
 )

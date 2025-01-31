@@ -21,9 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.5"/>
-
-    <!-- App Title -->
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="0.5"/>
 
     <!-- Date and Time -->
     <TextView
@@ -39,52 +38,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-    <!-- Task List Label -->
-    <TextView
-            android:id="@+id/taskListLabel"
+    <!-- Calendar Icon -->
+    <ImageView
+            android:id="@+id/calendarPlus"
+            android:layout_width="70dp"
+            android:layout_height="65dp"
+            app:srcCompat="@drawable/calendar_plus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
+    <!-- User Icon -->
+    <ImageView
+            android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/your_tasks"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/dateTimeDisplay"
+            app:srcCompat="@drawable/icons8_user_64"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
 
-    <!-- Task List RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="292dp"
-            android:background="#F0F0F0"
-            android:padding="8dp"
-            app:layout_constraintTop_toBottomOf="@id/taskListLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp" />
 
-    <!-- Quick Add Task Button -->
+
+    <!-- update middle view here -->
+
 
     <!-- Today's Progress Section -->
-    <Button
-            android:id="@+id/btnQuickAddTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Calendar"
-            android:textColor="@color/midnight"
-            android:backgroundTint="@color/mango"
-            app:layout_constraintTop_toBottomOf="@id/mainRecyclerView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.498"/>
     <TextView
             android:id="@+id/progressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/today_progress"
             android:textColor="@color/mango"
-            app:layout_constraintTop_toBottomOf="@id/btnQuickAddTask"
+            app:layout_constraintTop_toBottomOf="@id/dateTimeDisplay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" />
@@ -107,10 +95,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/dailyProgress"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp">
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="30dp">
 
         <Button
                 android:id="@+id/btnSettings"
@@ -140,40 +129,6 @@
                 android:backgroundTint="@color/midnight" />
     </LinearLayout>
 
-    <!-- Calendar Icon -->
-    <ImageView
-            android:id="@+id/calendarPlus"
-            android:layout_width="70dp"
-            android:layout_height="65dp"
-            app:srcCompat="@drawable/calendar_plus"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp" />
 
-    <!-- User Icon -->
-    <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icons8_user_64"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"/>
-
-
-    <!-- No recycler view for now
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="42dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addTaskBtn" />
--->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
