@@ -106,7 +106,7 @@
 
         <!-- Save Button -->
         <Button
-                android:id="@+id/backButton"
+                android:id="@+id/backButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Back"

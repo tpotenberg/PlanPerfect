@@ -13,15 +13,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentHelpBinding
-import com.example.planperfect.databinding.FragmentHomeBinding
-
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.database.DataSnapshot
-//import com.google.firebase.database.DatabaseError
-//import com.google.firebase.database.DatabaseReference
-//import com.google.firebase.database.ValueEventListener
-//import com.google.firebase.database
 import com.google.firebase.database.*
 
 class HelpFragment : Fragment() {
@@ -47,7 +39,7 @@ class HelpFragment : Fragment() {
 
         init(view)
 
-        binding.backButton.setOnClickListener {
+        binding.backButton2.setOnClickListener {
             navController.navigate(R.id.action_helpFragment_to_homeFragment)
         }
     }

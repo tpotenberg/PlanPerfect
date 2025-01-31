@@ -42,7 +42,10 @@ class SettingsFragment : Fragment() {
                 updateProfile(user)
             else
                 Toast.makeText(context, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
+
+            navController.navigate(R.id.action_helpFragment_to_homeFragment)
         }
+
     }
 
     private fun updateProfile(user: String) {

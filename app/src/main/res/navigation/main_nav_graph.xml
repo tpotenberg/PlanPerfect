@@ -5,6 +5,7 @@
             android:id="@+id/main_nav_graph"
             app:startDestination="@id/splashFragment">
 
+    <!-- SPLASH PAGE -->
     <fragment
             android:id="@+id/splashFragment"
             android:name="com.example.planperfect.fragments.SplashFragment"
@@ -22,12 +23,13 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <!-- SIGN IN PAGE -->
     <fragment
             android:id="@+id/signInFragment"
             android:name="com.example.planperfect.fragments.SignInFragment"
             android:label="fragment_sign_in"
-            tools:layout="@layout/fragment_sign_in">
-
+            tools:layout="@layout/fragment_sign_in" >
         <action
                 android:id="@+id/action_signInFragment_to_signUpFragment"
                 app:destination="@id/signUpFragment"
@@ -39,6 +41,8 @@
                 app:popUpTo="@id/signInFragment"
                 app:popUpToInclusive="true" />
     </fragment>
+
+    <!-- SIGN UP PAGE -->
     <fragment
             android:id="@+id/signUpFragment"
             android:name="com.example.planperfect.fragments.SignUpFragment"
@@ -55,16 +59,22 @@
                 app:popUpTo="@id/signUpFragment"
                 app:popUpToInclusive="true" />
     </fragment>
+
+    <!-- CALENDAR PAGE -->
     <fragment
             android:id="@+id/calendarFragment"
             android:name="com.example.planperfect.fragments.CalendarFragment"
             android:label="fragment_calendar"
             tools:layout="@layout/fragment_calendar" />
+
+    <!-- SETTINGS PAGE -->
     <fragment
             android:id="@+id/settingsFragment"
             android:name="com.example.planperfect.fragments.SettingsFragment"
             android:label="fragment_calendar"
             tools:layout="@layout/fragment_settings" />
+
+    <!-- HELP PAGE -->
     <fragment
             android:id="@+id/helpFragment"
             android:name="com.example.planperfect.fragments.HelpFragment"
@@ -73,10 +83,11 @@
         <action
                 android:id="@+id/action_helpFragment_to_homeFragment"
                 app:destination="@id/homeFragment"
-                app:popUpTo="@id/signUpFragment"
+                app:popUpTo="@id/helpFragment"
                 app:popUpToInclusive="true" />
     </fragment>
 
+    <!-- ABOUT PAGE -->
     <fragment
             android:id="@+id/aboutFragment"
             android:name="com.example.planperfect.fragments.AboutFragment"

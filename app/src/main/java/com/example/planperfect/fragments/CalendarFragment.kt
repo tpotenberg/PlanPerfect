@@ -28,7 +28,7 @@ class CalendarFragment : Fragment() {
     private val TAG = "CalendarFragment"
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var calendarView: CalendarView
-    private var events: MutableMap<String, MutableList<String>> = mutableMapOf()
+    private var events: ArrayList<String> = arrayListOf()
 
 
     override fun onCreateView(
@@ -47,10 +47,7 @@ class CalendarFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendar)
         val scheduleTaskButton: Button = view.findViewById(R.id.schedule_task_button)
 
-        val calendarDays: MutableList<CalendarDay> = ArrayList()
-
-        addTaskToCalendar(2024, Calendar.DECEMBER, 25, "Christmas Day", R.drawable.candycane, calendarDays)
-        addTaskToCalendar(2024, Calendar.DECEMBER, 31, "New Year's Eve", R.drawable.glass_flute, calendarDays)
+        val calendarDays: ArrayList<CalendarDay> = ArrayList()
 
         calendarView.setCalendarDays(calendarDays)
 
@@ -92,10 +89,10 @@ class CalendarFragment : Fragment() {
         day: Int,
         taskName: String,
         iconResId: Int,
-        calendarDays: MutableList<CalendarDay>
+        calendarDays: ArrayList<CalendarDay>
     ) {
-        val key = String.format("%02d-%02d-%d", day, month + 1, year) // Format date
-        events.getOrPut(key) { mutableListOf() }.add(taskName)
+        //val key = String.format("%02d-%02d-%d", day, month + 1, year) // Format date
+        //events.get(key) { arrayListOf() }.add(taskName)
 
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day)
@@ -106,7 +103,7 @@ class CalendarFragment : Fragment() {
     }
 
 
-    private fun showScheduleTaskDialog(calendarDays: MutableList<CalendarDay>) {
+    private fun showScheduleTaskDialog(calendarDays: ArrayList<CalendarDay>) {
         val dialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_schedule_task, null)
         val taskNameEditText: EditText = dialogView.findViewById(R.id.task_name_edit_text)
         val taskDatePicker: DatePicker = dialogView.findViewById(R.id.task_date_picker)
