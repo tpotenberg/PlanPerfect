@@ -1,5 +1,6 @@
 package com.example.planperfect.fragments
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.R
 
-//test data for debugging
 private val tasks = listOf(
-    Task("Test Meeting", "9:00 AM", 12),
-    Task("Test Workout", "5:00 PM", 42)
+    Task("Test Meeting", "9:00 AM", 14),
+    Task("Test Workout", "5:00 PM", 44)
 )
 
 class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -32,6 +32,8 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
         holder.taskName.text = task.name
         holder.taskTime.text = task.time
         holder.taskIcon.setImageResource(task.iconResId)
+
+        Log.d("RecyclerView", "Binding task: ${task.name} at ${task.time}")
     }
 
     override fun getItemCount(): Int = tasks.size
