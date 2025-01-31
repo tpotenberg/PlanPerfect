@@ -7,8 +7,17 @@
     <string name="re_enter_your_pass">Re-enter Your Password .....</string>
     <string name="type_your_task">Type your task .....</string>
     <string name="logout">Logout</string>
+
+    <!-- Schedule Strings -->
     <string name="schedule_task">Schedule Task</string>
     <string name="task_name_hint">Task Name</string>
+    <string name="daily_schedule_title">Daily Schedule</string>
+    <string name="date_label">Date</string>
+    <string name="schedule_task_button">Schedule Task</string>
+    <string name="task_icon">Task Icon</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_time">Task Time</string>
+
 
     <!-- Home Page Strings -->
     <string name="app_logo_description">PlanPerfect logo</string>

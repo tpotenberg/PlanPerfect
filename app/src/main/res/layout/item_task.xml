@@ -13,7 +13,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="Task Icon"
+            android:contentDescription="@string/task_icon"
             android:src="@drawable/calendar_plus"/>
 
     <!-- Task Details -->
@@ -27,7 +27,7 @@
                 android:id="@+id/task_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Task Name"
+                android:text="@string/task_name"
                 android:textSize="16sp"
                 android:textColor="@color/jade"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
                 android:id="@+id/task_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Task Time"
+                android:text="@string/task_time"
                 android:textSize="14sp"
                 android:textColor="@color/sky" />
     </LinearLayout>

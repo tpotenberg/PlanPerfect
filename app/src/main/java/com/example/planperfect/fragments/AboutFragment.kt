@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentAboutBinding
 import com.example.planperfect.databinding.FragmentHomeBinding
+import com.example.planperfect.utils.adapter.TaskAdapter
+import com.example.planperfect.utils.model.ToDoData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.database.DataSnapshot
@@ -47,6 +49,9 @@ class AboutFragment : Fragment() {
         init(view)
 
         binding.backButton.setOnClickListener {
+        binding.profileName.text = auth.currentUser?.displayName
+
+        binding.calendarPlus.setOnClickListener {
 
             navController.navigate(R.id.action_aboutFragment_to_homeFragment)
 

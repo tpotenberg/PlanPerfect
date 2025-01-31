@@ -1,22 +1,26 @@
 package com.example.planperfect.fragments
 
-//import com.google.firebase.database.DataSnapshot
-//import com.google.firebase.database.DatabaseError
-//import com.google.firebase.database.DatabaseReference
-//import com.google.firebase.database.ValueEventListener
-//import com.google.firebase.database
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentHomeBinding
+import com.example.planperfect.utils.adapter.TaskAdapter
+import com.example.planperfect.utils.model.ToDoData
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.database.DataSnapshot
+//import com.google.firebase.database.DatabaseError
+//import com.google.firebase.database.DatabaseReference
+//import com.google.firebase.database.ValueEventListener
+//import com.google.firebase.database
 import com.google.firebase.database.*
 import com.google.type.Date
 
@@ -44,10 +48,6 @@ class HomeFragment : Fragment() {
         init(view)
 
         binding.profileName.text = auth.currentUser?.displayName
-
-
-
-        //binding.dateTimeDisplay.text = currentDate
 
         binding.calendarPlus.setOnClickListener {
 
@@ -78,6 +78,9 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance().reference
 
         navController = Navigation.findNavController(view)
+
+        // binding.mainRecyclerView.setHasFixedSize(true)
+        // binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
 
     }
 
