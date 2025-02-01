@@ -9,10 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.R
 
-private val tasks = listOf(
-    Task("Test Meeting", "9:00 AM", 14),
-    Task("Test Workout", "5:00 PM", 44)
-)
 
 class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
