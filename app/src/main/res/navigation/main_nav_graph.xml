@@ -72,7 +72,13 @@
             android:id="@+id/settingsFragment"
             android:name="com.example.planperfect.fragments.SettingsFragment"
             android:label="fragment_calendar"
-            tools:layout="@layout/fragment_settings" />
+            tools:layout="@layout/fragment_settings" >
+        <action
+                android:id="@+id/action_calendarFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/helpFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
 
     <!-- HELP PAGE -->
     <fragment
@@ -127,6 +133,12 @@
         <action
                 android:id="@+id/action_homeFragment_to_aboutFragment"
                 app:destination="@id/aboutFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true" />
+
+        <action
+                android:id="@+id/action_homeFragment_to_splashFragment"
+                app:destination="@id/splashFragment"
                 app:popUpTo="@id/homeFragment"
                 app:popUpToInclusive="true" />
     </fragment>

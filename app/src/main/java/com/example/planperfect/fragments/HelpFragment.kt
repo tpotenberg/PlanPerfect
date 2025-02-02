@@ -20,9 +20,6 @@ class HelpFragment : Fragment() {
 
     private val TAG = "HelpFragment"
     private lateinit var binding: FragmentHelpBinding
-    private lateinit var database: DatabaseReference
-    private lateinit var auth: FirebaseAuth
-    private lateinit var authId: String
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -45,14 +42,7 @@ class HelpFragment : Fragment() {
     }
 
     private fun init(view : View) {
-
-        auth = FirebaseAuth.getInstance()
-        authId = auth.currentUser!!.uid
-        //database = Firebase.database.reference.child("Tasks").child(authId)
-        database = FirebaseDatabase.getInstance().reference
-
         navController = Navigation.findNavController(view)
-
     }
 
 }

@@ -12,7 +12,6 @@ import android.widget.TimePicker
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import android.widget.*
 import androidx.fragment.app.Fragment
 import com.applandeo.materialcalendarview.CalendarDay
 import com.applandeo.materialcalendarview.CalendarView
@@ -20,15 +19,21 @@ import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
 import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentCalendarBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class CalendarFragment : Fragment() {
     private val TAG = "CalendarFragment"
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var calendarView: CalendarView
-    private var events: ArrayList<String> = arrayListOf()
+    private var events: MutableMap<String, MutableList<String>> = mutableMapOf()
+
+    //  Connect to database
+    private lateinit var auth : FirebaseAuth
+    private lateinit var databaseRef: DatabaseReference
+
 
 
     override fun onCreateView(
@@ -46,8 +51,12 @@ class CalendarFragment : Fragment() {
 
         calendarView = view.findViewById(R.id.calendar)
         val scheduleTaskButton: Button = view.findViewById(R.id.schedule_task_button)
+        val calendarDays: MutableList<CalendarDay> = ArrayList()
 
-        val calendarDays: ArrayList<CalendarDay> = ArrayList()
+        // Firebase stuff
+        auth = FirebaseAuth.getInstance()
+        databaseRef = FirebaseDatabase.getInstance().getReference("UserTasks")
+            .child(auth.currentUser?.uid.toString())
 
         calendarView.setCalendarDays(calendarDays)
 
@@ -89,10 +98,10 @@ class CalendarFragment : Fragment() {
         day: Int,
         taskName: String,
         iconResId: Int,
-        calendarDays: ArrayList<CalendarDay>
+        calendarDays: MutableList<CalendarDay>
     ) {
-        //val key = String.format("%02d-%02d-%d", day, month + 1, year) // Format date
-        //events.get(key) { arrayListOf() }.add(taskName)
+        val key = String.format("%02d-%02d-%d", day, month + 1, year) // Format date
+        events.getOrPut(key) { mutableListOf() }.add(taskName)
 
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day)
@@ -100,10 +109,40 @@ class CalendarFragment : Fragment() {
         val calendarDay = CalendarDay(calendar)
         calendarDay.imageResource = iconResId
         calendarDays.add(calendarDay)
+
+        addFBTaskToCalendar(year, month, day, taskName, iconResId, calendarDays)
+    }
+
+    // Add to firebase
+    private fun addFBTaskToCalendar(
+        year: Int,
+        month: Int,
+        day: Int,
+        taskName: String,
+        iconResId: Int,
+        calendarDays: MutableList<CalendarDay>) {
+        val fbYear = year.toString()
+        val fbMonth = month.toString()
+        val fbDay = day.toString()
+        val fbTaskName = taskName
+        val fbIconResId = iconResId.toString()
+        val fbCalendarDays = calendarDays.toString()
+
+        val fbTaskId = databaseRef.push().key!!
+
+        val storeTask = fbTask(fbTaskId, fbYear, fbMonth, fbDay, fbTaskName, fbIconResId, fbCalendarDays)
+
+        databaseRef.child(fbTaskId).setValue(storeTask)
+            .addOnCompleteListener{
+                Toast.makeText(context, "Task Added Successfully", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener { err ->
+                Toast.makeText(context, "Task Adding Failed", Toast.LENGTH_SHORT).show()
+            }
+
     }
 
 
-    private fun showScheduleTaskDialog(calendarDays: ArrayList<CalendarDay>) {
+    private fun showScheduleTaskDialog(calendarDays: MutableList<CalendarDay>) {
         val dialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_schedule_task, null)
         val taskNameEditText: EditText = dialogView.findViewById(R.id.task_name_edit_text)
         val taskDatePicker: DatePicker = dialogView.findViewById(R.id.task_date_picker)
@@ -137,17 +176,11 @@ class CalendarFragment : Fragment() {
                 val month = taskDatePicker.month
                 val year = taskDatePicker.year
 
-                val hour = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                val hour =
                     taskTimePicker.hour
-                } else {
-                    taskTimePicker.currentHour
-                }
 
-                val minute = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                val minute =
                     taskTimePicker.minute
-                } else {
-                    taskTimePicker.currentMinute
-                }
 
                 val selectedIconIndex = iconSpinner.selectedItemPosition
                 if (selectedIconIndex < 0 || selectedIconIndex >= icons.size) {
@@ -158,7 +191,7 @@ class CalendarFragment : Fragment() {
                 val timeFormatted = String.format("%02d:%02d", hour, minute)
                 val taskWithTime = "$taskName at $timeFormatted"
                 addTaskToCalendar(year, month, day, taskWithTime, selectedIcon, calendarDays)
-
+                //addFBTaskToCalendar(year, month, day, taskWithTime, selectedIcon, calendarDays)
                 calendarView.setCalendarDays(calendarDays)
 
                 Toast.makeText(this.context, "Task scheduled", Toast.LENGTH_SHORT).show()

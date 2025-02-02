@@ -71,4 +71,7 @@
     <string name="update_information">Update Information</string>
     <string name="update_password">Update password ...</string>
     <string name="update_username">Update username ...</string>
+    <string name="sign_in">Sign In</string>
+    <string name="not_registered_yet">Not Registered Yet ??</string>
+    <string name="enter_your_first_name">Enter your first name ...</string>
 </resources>

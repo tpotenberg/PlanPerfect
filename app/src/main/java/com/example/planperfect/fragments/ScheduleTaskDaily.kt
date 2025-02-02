@@ -51,13 +51,8 @@ class ScheduleTaskDaily(
             if (taskName.isNotEmpty()) {
                 val calendar = Calendar.getInstance()
                 calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
-                    calendar.set(Calendar.MINUTE, timePicker.minute)
-                } else {
-                    calendar.set(Calendar.HOUR_OF_DAY, timePicker.currentHour)
-                    calendar.set(Calendar.MINUTE, timePicker.currentMinute)
-                }
+                calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
+                calendar.set(Calendar.MINUTE, timePicker.minute)
 
                 // Create and pass the task
                 val selectedIcon = icons[iconSpinner.selectedItemPosition]
