@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.planperfect.R
 
 
-class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+class TaskAdapter(private val tasks: ArrayList<Task>)
+    : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val taskName: TextView = itemView.findViewById(R.id.task_name)
@@ -29,9 +31,11 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
         holder.taskTime.text = task.time
         holder.taskIcon.setImageResource(task.iconResId)
 
-        Log.d("RecyclerView", "Binding task: ${task.name} at ${task.time}")
+       // Log.d("RecyclerView", "Binding task: ${task.name} at ${task.time}")
     }
 
-    override fun getItemCount(): Int = tasks.size
+    override fun getItemCount(): Int  {
+        return tasks.size
+    }
 
 }

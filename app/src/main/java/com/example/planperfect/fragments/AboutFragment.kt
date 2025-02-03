@@ -13,25 +13,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planperfect.R
 import com.example.planperfect.databinding.FragmentAboutBinding
-import com.example.planperfect.databinding.FragmentHomeBinding
-//import com.example.planperfect.utils.adapter.TaskAdapter
-//import com.example.planperfect.utils.model.ToDoData
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.database.DataSnapshot
-//import com.google.firebase.database.DatabaseError
-//import com.google.firebase.database.DatabaseReference
-//import com.google.firebase.database.ValueEventListener
-//import com.google.firebase.database
 import com.google.firebase.database.*
 
 class AboutFragment : Fragment() {
 
     private val TAG = "AboutFragment"
     private lateinit var binding: FragmentAboutBinding
-    private lateinit var database: DatabaseReference
-    private lateinit var auth: FirebaseAuth
-    private lateinit var authId: String
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -46,30 +34,16 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //init(view)
+        init(view)
 
-        //binding.backButton.setOnClickListener {
-            //binding.profileName.text = auth.currentUser?.displayName
-
-            //binding.calendarPlus.setOnClickListener {
-
-                navController.navigate(R.id.action_aboutFragment_to_homeFragment)
-
-            }
-
-
+        binding.btnBack.setOnClickListener {
+            navController.navigate(R.id.action_aboutFragment_to_homeFragment)
         }
 
+    }
 
+    private fun init(view : View) {
+        navController = Navigation.findNavController(view)
+    }
 
-        private fun init(view: View) {
-
-            //auth = FirebaseAuth.getInstance()
-            //authId = auth.currentUser!!.uid
-            //database = Firebase.database.reference.child("Tasks").child(authId)
-            //database = FirebaseDatabase.getInstance().reference
-
-            //navController = Navigation.findNavController(view)
-
-        }
-
+}

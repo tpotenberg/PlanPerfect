@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.planperfect"
-        minSdk = 24
+        minSdk = 26
         //noinspection OldTargetApi,EditedTargetSdkVersion
         targetSdk = 35
         versionCode = 1
@@ -52,8 +52,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
     implementation("androidx.activity:activity-ktx:1.10.0")
     implementation("androidx.compose.ui:ui-android:1.7.6")
     implementation("androidx.compose.foundation:foundation-layout-android:1.7.6")
@@ -64,8 +62,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-
-    // calendar
     implementation("com.applandeo:material-calendar-view:1.9.2")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("com.google.android.gms:play-services-auth:21.3.0")
